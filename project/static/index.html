@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банковский RAG Ассистент</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <!-- ========== Модальное окно авторизации ========== -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAuthModal">×</span>
+            <h2 class="modal-title">Вход / Регистрация</h2>
+            <div id="authTabs">
+                <button id="loginTab" class="tab active">Вход</button>
+                <button id="registerTab" class="tab">Регистрация</button>
+            </div>
+            <form id="authForm">
+                <label for="username">Логин</label>
+                <input type="text" id="username" placeholder="Введите логин" required autocomplete="username">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="Введите пароль" required autocomplete="current-password">
+                <button type="submit" id="authSubmitBtn" class="btn-primary">Войти</button>
+            </form>
+            <p id="authError" class="error"></p>
+        </div>
+    </div>
+
+    <!-- ========== Основное приложение ========== -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h2>Чаты</h2>
+                <button id="newChatButton" class="btn-icon" title="Новый чат">+</button>
+            </header>
+            <ul class="chat-list" id="chatList"></ul>
+             <!-- ========== Настройки ========== -->
+            <div class="sidebar-settings">
+                <h3>Настройки</h3>
+                <div class="setting-item">
+                    <label for="defaultCity">Город по умолчанию</label>
+                    <select id="defaultCity">
+                        <option value="">Не выбран</option>
+                        <option value="Минск">Минск</option>
+                        <option value="Гродно">Гродно</option>
+                        <option value="Брест">Брест</option>
+                        <option value="Гомель">Гомель</option>
+                        <option value="Витебск">Витебск</option>
+                        <option value="Могилёв">Могилёв</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="chartType">Тип диаграммы</label>
+                    <select id="chartType">
+                        <option value="pie">Круговая</option>
+                        <option value="bar">Столбчатая</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="chartPeriod">Период</label>
+                    <select id="chartPeriod">
+                        <option value="month" selected>Этот месяц</option>
+                        <option value="last_month">Прошлый месяц</option>
+                        <option value="week">Эта неделя</option>
+                        <option value="today">Сегодня</option>
+                        <option value="year">Этот год</option>
+                        <option value="all">Все время</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-area">
+            <header class="chat-header">
+                <h1>Банковский Ассистент</h1>
+                <div id="status-indicator" class="status-offline" title="Статус API"></div>
+                <button id="logoutButton" class="btn-text">Выйти</button>
+            </header>
+            <div class="chat-box" id="chatBox"></div>
+            <div class="input-area">
+                <textarea id="userInput" placeholder="Задайте вопрос..." rows="1"></textarea>
+                <div id="suggestionsDropdown" class="suggestions-dropdown" style="display: none;"></div>
+                <div class="input-buttons">
+                    <button id="loadChartButton" title="Диаграмма расходов">📊</button>
+                    <button id="kursButton" title="Курсы валют">📈</button>
+                    <button id="nearestFilialButton" title="Найти ближайший филиал">📍</button>
+                    <button id="uploadImageButton" title="Загрузить чек">📷</button>
+                    <button id="sendButton" title="Отправить">➤</button>
+                </div>
+            </div>
+        
+        </main>
+    </div>
+
+    <!-- ========== Модальное окно загрузки изображения ========== -->
+    
+    <!-- ========== Приветственное модальное окно ========== -->
+    <div id="welcomeModal" class="modal" style="display:none;">
+        <div class="modal-content" style="max-width:520px;">
+            <h2 style="margin-bottom:12px;">👋 Добро пожаловать!</h2>
+            <p style="color:var(--text-secondary);margin-bottom:16px;">Banking RAG Assistant — ваш умный банковский помощник</p>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.3em;">📊</span>
+                    <span><b>Диаграмма расходов</b> — нажмите кнопку 📊 в панели, выберите период</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.3em;">📈</span>
+                    <span><b>Курсы валют</b> — нажмите 📈 или напишите «курс USD»</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.3em;">📍</span>
+                    <span><b>Ближайший филиал</b> — нажмите 📍, разрешите геолокацию</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.3em;">📷</span>
+                    <span><b>Загрузить чек</b> — нажмите 📷, выберите фото — я распознаю автоматически</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.3em;">💬</span>
+                    <span><b>Любой вопрос</b> — просто напишите в чат</span>
+                </div>
+            </div>
+            <button id="closeWelcomeBtn" class="btn-primary" style="width:100%;">Начать →</button>
+        </div>
+    </div>
+
+    <div id="uploadModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="closeUploadModal">×</span>
+            <h2>Загрузить чек</h2>
+            <div class="drop-area" id="dropArea">
+                <p>Перетащите изображение сюда или нажмите, чтобы выбрать</p>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            </div>
+            <div class="preview-card" id="previewCard" style="display: none;">
+                <img id="previewImage" src="" alt="Предпросмотр">
+                <p id="imageName"></p>
+            </div>
+            <div class="progress-bar" id="progressBar" style="display: none;">
+                <div class="progress" id="progressFill"></div>
+                <span id="progressText">0%</span>
+            </div>
+            <div class="upload-actions">
+                <button id="confirmUploadButton" class="btn-primary" disabled>Загрузить</button>
+                <button id="cancelUploadButton" class="btn-secondary" style="display:none">✕ Отменить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== Модальное окно редактирования чека ========== -->
+    <div id="editReceiptModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="closeEditModal">×</span>
+            <h2>Редактировать чек</h2>
+            <form id="editReceiptForm">
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="editAmount">Сумма</label>
+                        <input type="number" id="editAmount" step="0.01" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="editCurrency">Валюта</label>
+                        <select id="editCurrency">
+                            <option value="BYN">BYN</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="RUB">RUB</option>
+                        </select>
+                    </div>
+                </div>
+                <label for="editCategory">Категория</label>
+                <select id="editCategory">
+                    <option value="продукты">Продукты</option>
+                    <option value="транспорт">Транспорт</option>
+                    <option value="услуги">Услуги</option>
+                    <option value="развлечения">Развлечения</option>
+                    <option value="здоровье">Здоровье</option>
+                    <option value="другое">Другое</option>
+                </select>
+                <label for="editDate">Дата (ДД.ММ.ГГГГ)</label>
+                <input type="text" id="editDate" placeholder="01.01.2024">
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-primary">Сохранить</button>
+                    <button type="button" id="cancelEditButton" class="btn-secondary">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/chat.js"></script>
+    <script src="/static/js/upload.js"></script>
+     <script src="/static/js/settings.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

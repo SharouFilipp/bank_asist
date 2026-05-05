@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5c21d43252066a72e65d238bca908d51 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_5c21d43252066a72e65d238bca908d51" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5c21d43252066a72e65d238bca908d51 = L.map(
+                "map_5c21d43252066a72e65d238bca908d51",
+                {
+                    center: [53.8902528, 27.5546112],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_dba1861d6211acee7b80d5a91b5bd3b2 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_dba1861d6211acee7b80d5a91b5bd3b2.addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var marker_a48ce58850669dd1815e8bb066a7defa = L.marker(
+                [53.8902528, 27.5546112],
+                {
+}
+            ).addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var icon_2a55dfabcba3c43877398fd4bcffc22d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d4114776108b93ac877e7f1a9a4b8ee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cab044441d8d3addabb4dd96b856df0c = $(`<div id="html_cab044441d8d3addabb4dd96b856df0c" style="width: 100.0%; height: 100.0%;">Вы здесь</div>`)[0];
+                popup_9d4114776108b93ac877e7f1a9a4b8ee.setContent(html_cab044441d8d3addabb4dd96b856df0c);
+            
+        
+
+        marker_a48ce58850669dd1815e8bb066a7defa.bindPopup(popup_9d4114776108b93ac877e7f1a9a4b8ee)
+        ;
+
+        
+    
+    
+                marker_a48ce58850669dd1815e8bb066a7defa.setIcon(icon_2a55dfabcba3c43877398fd4bcffc22d);
+            
+    
+            var marker_c22efcb325cfde55933e1695e94400b8 = L.marker(
+                [53.8897131, 27.5571423],
+                {
+}
+            ).addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var icon_e9337c97e49006e835251609d546ad66 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a9b8138c942a061664276ff4cda39e9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_519080c00267ef504f772e52d285ac8c = $(`<div id="html_519080c00267ef504f772e52d285ac8c" style="width: 100.0%; height: 100.0%;">Минск, Бобруйская 6<br>0.18 км</div>`)[0];
+                popup_2a9b8138c942a061664276ff4cda39e9.setContent(html_519080c00267ef504f772e52d285ac8c);
+            
+        
+
+        marker_c22efcb325cfde55933e1695e94400b8.bindPopup(popup_2a9b8138c942a061664276ff4cda39e9)
+        ;
+
+        
+    
+    
+                marker_c22efcb325cfde55933e1695e94400b8.setIcon(icon_e9337c97e49006e835251609d546ad66);
+            
+    
+            var marker_c53540fb3ee221d2c1088adb48f188a7 = L.marker(
+                [53.8905633, 27.551182],
+                {
+}
+            ).addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var icon_226c78a14b0fb3638c66ba55fd27d0d3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_05e5e196e0e4863350c32e6e8db556a8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8da1aab08b8a117249a9a08584c2d9a1 = $(`<div id="html_8da1aab08b8a117249a9a08584c2d9a1" style="width: 100.0%; height: 100.0%;">Минск, Привокзальная 5<br>0.23 км</div>`)[0];
+                popup_05e5e196e0e4863350c32e6e8db556a8.setContent(html_8da1aab08b8a117249a9a08584c2d9a1);
+            
+        
+
+        marker_c53540fb3ee221d2c1088adb48f188a7.bindPopup(popup_05e5e196e0e4863350c32e6e8db556a8)
+        ;
+
+        
+    
+    
+                marker_c53540fb3ee221d2c1088adb48f188a7.setIcon(icon_226c78a14b0fb3638c66ba55fd27d0d3);
+            
+    
+            var marker_5ec837484ae8ae2fa48e1ff073fa8146 = L.marker(
+                [53.8905633, 27.551182],
+                {
+}
+            ).addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var icon_3e238add11c3ed507c07e6c537cdc22a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8b8bac702e98847890156a529844728f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3ab6af8c4993e7d401aa4075859b69d8 = $(`<div id="html_3ab6af8c4993e7d401aa4075859b69d8" style="width: 100.0%; height: 100.0%;">Минск, Привокзальная 5<br>0.23 км</div>`)[0];
+                popup_8b8bac702e98847890156a529844728f.setContent(html_3ab6af8c4993e7d401aa4075859b69d8);
+            
+        
+
+        marker_5ec837484ae8ae2fa48e1ff073fa8146.bindPopup(popup_8b8bac702e98847890156a529844728f)
+        ;
+
+        
+    
+    
+                marker_5ec837484ae8ae2fa48e1ff073fa8146.setIcon(icon_3e238add11c3ed507c07e6c537cdc22a);
+            
+    
+            var marker_aa8160f35050977d7baa36b723b7a611 = L.marker(
+                [53.8905633, 27.551182],
+                {
+}
+            ).addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var icon_ea87fabdcfa14e689d4be665b1a9c4a9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_175d8571a198b39db60905c4626c5d3c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_823a1333d83e070e3e0ba9d10c302cfc = $(`<div id="html_823a1333d83e070e3e0ba9d10c302cfc" style="width: 100.0%; height: 100.0%;">Минск, Привокзальная 5<br>0.23 км</div>`)[0];
+                popup_175d8571a198b39db60905c4626c5d3c.setContent(html_823a1333d83e070e3e0ba9d10c302cfc);
+            
+        
+
+        marker_aa8160f35050977d7baa36b723b7a611.bindPopup(popup_175d8571a198b39db60905c4626c5d3c)
+        ;
+
+        
+    
+    
+                marker_aa8160f35050977d7baa36b723b7a611.setIcon(icon_ea87fabdcfa14e689d4be665b1a9c4a9);
+            
+    
+            var marker_d9e86579544d8e4784a75790be53bb3d = L.marker(
+                [53.8962105, 27.5543788],
+                {
+}
+            ).addTo(map_5c21d43252066a72e65d238bca908d51);
+        
+    
+            var icon_a27e664a24bcf20e8de0d56c9f64e468 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4e70bc952224f0cdeb4cd44bc820e28b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cac5a8bbb4f5d79c366b04afbcd98bee = $(`<div id="html_cac5a8bbb4f5d79c366b04afbcd98bee" style="width: 100.0%; height: 100.0%;">Минск, Карла Маркса 8<br>0.66 км</div>`)[0];
+                popup_4e70bc952224f0cdeb4cd44bc820e28b.setContent(html_cac5a8bbb4f5d79c366b04afbcd98bee);
+            
+        
+
+        marker_d9e86579544d8e4784a75790be53bb3d.bindPopup(popup_4e70bc952224f0cdeb4cd44bc820e28b)
+        ;
+
+        
+    
+    
+                marker_d9e86579544d8e4784a75790be53bb3d.setIcon(icon_a27e664a24bcf20e8de0d56c9f64e468);
+            
+</script>
+</html>
